@@ -1,0 +1,10 @@
+node_modules
+dist
+.git
+.env
+.env.*
+backend/.bin
+backend/pb_data
+tests
+test-results
+*.log

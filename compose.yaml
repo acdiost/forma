@@ -1,0 +1,19 @@
+services:
+  forma:
+    build: .
+    image: forma:0.0.1
+    restart: unless-stopped
+    init: true
+    ports:
+      - "${FORMA_BIND:-127.0.0.1}:${FORMA_PORT:-8090}:8090"
+    environment:
+      FORMA_SETUP_TOKEN: "${FORMA_SETUP_TOKEN:?请先运行 npm run setup 或在 .env 配置随机初始化密钥}"
+    volumes:
+      - forma_data:/app/pb_data
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    stop_grace_period: 30s
+volumes:
+  forma_data:
