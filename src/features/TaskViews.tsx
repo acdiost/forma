@@ -21,8 +21,9 @@ import {
 import { CSS } from "@dnd-kit/utilities"
 import {
   Check,
+  CheckCircle2,
+  Circle,
   Ellipsis,
-  Flag,
   GripVertical,
   Plus,
   RotateCcw,
@@ -48,12 +49,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { TaskChoice, TaskDue, TaskPriority } from "./TaskQuickFields"
 import { useActions } from "@/hooks/use-workspace"
 import { useUI } from "@/store"
 import {
   displayDate,
   isOverdue,
-  priorities,
   statuses,
   type Member,
   type Project,
@@ -234,6 +235,7 @@ function TaskRow({
   pending,
   ...props
 }: Props & { task: Task; pending: boolean }) {
+  const actions = useActions()
   const {
     attributes,
     listeners,
@@ -241,10 +243,13 @@ function TaskRow({
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: task.id, disabled: props.trash || pending })
+  } = useSortable({
+    id: task.id,
+    disabled: props.trash || pending || actions.taskUpdate.isPending,
+  })
   const set = useUI((s) => s.set)
-  const actions = useActions()
-  const priority = priorities.find((p) => p.value === task.priority)!
+  const saving = pending || actions.taskUpdate.isPending
+  const assignee = props.members.find((m) => m.id === task.assignee)
   return (
     <TableRow
       ref={setNodeRef}
@@ -270,34 +275,114 @@ function TaskRow({
         )}
       </TableCell>
       <TableCell>
-        <div className="task-title">
-          <Button
-            variant="link"
-            onClick={() => set({ selected: task.id, showDetails: true })}
-          >
-            {task.title}
-          </Button>
-          <span>
-            {task.id.slice(0, 7).toUpperCase()} <i>·</i>{" "}
-            {props.projects.find((p) => p.id === task.project)?.name || "项目"}
-            {task.label && ` · ${task.label}`}
-          </span>
+        <div className="task-name-cell">
+          {!props.trash && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="task-complete"
+              aria-label={`${task.status === "done" ? "重新打开" : "完成"}：${task.title}`}
+              aria-pressed={task.status === "done"}
+              disabled={saving}
+              onClick={() =>
+                actions.taskUpdate.mutate({
+                  task,
+                  patch: { status: task.status === "done" ? "todo" : "done" },
+                })
+              }
+            >
+              {task.status === "done" ? (
+                <CheckCircle2 size={16} />
+              ) : (
+                <Circle size={16} />
+              )}
+            </Button>
+          )}
+          <div className="task-title">
+            <Button
+              variant="link"
+              onClick={() => set({ selected: task.id, showDetails: true })}
+            >
+              {task.title}
+            </Button>
+            <span>
+              {task.id.slice(0, 7).toUpperCase()} <i>·</i>{" "}
+              {props.projects.find((p) => p.id === task.project)?.name ||
+                "项目"}
+              {task.label && ` · ${task.label}`}
+            </span>
+          </div>
         </div>
       </TableCell>
       <TableCell>
-        <StatusBadge status={task.status} />
+        {props.trash ? (
+          <StatusBadge status={task.status} />
+        ) : (
+          <TaskChoice
+            label={`修改状态：${task.title}`}
+            value={task.status}
+            options={statuses}
+            disabled={saving}
+            onChange={(status) =>
+              actions.taskUpdate.mutate({
+                task,
+                patch: { status: status as Status },
+              })
+            }
+          >
+            <StatusBadge status={task.status} />
+          </TaskChoice>
+        )}
       </TableCell>
       <TableCell>
-        <span className={`priority priority-${priority.label}`}>
-          <Flag size={12} />
-          {priority.label}
-        </span>
+        <TaskPriority
+          task={task}
+          disabled={props.trash || saving}
+          onChange={(priority) =>
+            actions.taskUpdate.mutate({ task, patch: { priority } })
+          }
+        />
       </TableCell>
       <TableCell>
-        <Person member={props.members.find((m) => m.id === task.assignee)} />
+        {props.trash ? (
+          <Person member={assignee} />
+        ) : (
+          <TaskChoice
+            label={`修改负责人：${task.title}`}
+            value={task.assignee || "none"}
+            options={[
+              { value: "none", label: "未分配" },
+              ...props.members
+                .filter((m) => m.active || m.id === task.assignee)
+                .map((m) => ({
+                  value: m.id,
+                  label: m.name + (m.active ? "" : "（已停用）"),
+                })),
+            ]}
+            disabled={saving}
+            onChange={(value) =>
+              actions.taskUpdate.mutate({
+                task,
+                patch: { assignee: value === "none" ? "" : value },
+              })
+            }
+          >
+            <Person member={assignee} />
+          </TaskChoice>
+        )}
       </TableCell>
       <TableCell className={`due-cell ${isOverdue(task) ? "overdue" : ""}`}>
-        {displayDate(task.due)}
+        {props.trash ? (
+          displayDate(task.due)
+        ) : (
+          <TaskDue
+            task={task}
+            disabled={saving}
+            onSave={(due) =>
+              actions.taskUpdate.mutateAsync({ task, patch: { due } })
+            }
+          />
+        )}
       </TableCell>
       <TableCell>
         {props.trash ? (
@@ -320,6 +405,7 @@ function TaskRow({
                 variant="ghost"
                 size="icon"
                 className="more"
+                disabled={saving}
                 aria-label={`${task.title}操作`}
               >
                 <Ellipsis size={16} />
@@ -426,6 +512,7 @@ function BoardCard({
   pending: boolean
   open: () => void
 }) {
+  const actions = useActions()
   const {
     attributes,
     listeners,
@@ -433,7 +520,10 @@ function BoardCard({
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: task.id, disabled: pending })
+  } = useSortable({
+    id: task.id,
+    disabled: pending || actions.taskUpdate.isPending,
+  })
   return (
     <Card
       ref={setNodeRef}
@@ -447,6 +537,13 @@ function BoardCard({
       <CardContent>
         <div className="board-card-top">
           <span>{task.id.slice(0, 7).toUpperCase()}</span>
+          <TaskPriority
+            task={task}
+            disabled={pending || actions.taskUpdate.isPending}
+            onChange={(priority) =>
+              actions.taskUpdate.mutate({ task, patch: { priority } })
+            }
+          />
           <Button
             variant="ghost"
             size="icon"

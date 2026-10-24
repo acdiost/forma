@@ -104,6 +104,7 @@ import {
   colors,
   dateInput,
   isOverdue,
+  priorities,
   statuses,
   today,
   type Member,
@@ -111,7 +112,7 @@ import {
   type Status,
   type Task,
 } from "@/lib/types"
-import { useUI } from "@/store"
+import { fontSizes, useUI } from "@/store"
 import { EmptyState, IconButton, Person } from "@/components/app/shared"
 import { PasswordForm } from "@/features/PasswordForm"
 import { Dashboard, ActivityFeed } from "@/features/Dashboard"
@@ -134,7 +135,8 @@ const nav = [
 export default function Workspace() {
   const { user, logout } = useAuth()
   const ui = useUI(),
-    { page, view, query, filter, selected, showDetails, dark, set } = ui
+    { page, view, query, filter, selected, showDetails, dark, fontSize, set } =
+      ui
   const workspace = useWorkspace(),
     actions = useActions(),
     isMobile = useIsMobile(),
@@ -189,19 +191,31 @@ export default function Workspace() {
     }
     setTaskForm({ status })
   }
-  const removeTask = (task: Task) =>
-    setConfirm({
-      title: "将任务移入回收站？",
-      description: `“${task.title}”会从工作列表移除，可在回收站中恢复。`,
-      run: async () => {
-        await actions.taskUpdate.mutateAsync({
-          task,
-          patch: { deleted_at: new Date().toISOString() },
-        })
-        set({ selected: null })
-        toast.success("任务已移入回收站")
-      },
-    })
+  const removeTask = (task: Task) => {
+    actions.taskUpdate.mutate(
+      { task, patch: { deleted_at: new Date().toISOString() } },
+      {
+        onSuccess: (deleted) => {
+          if (useUI.getState().selected === task.id) set({ selected: null })
+          toast.success("任务已移入回收站", {
+            description: task.title,
+            duration: 8000,
+            action: {
+              label: "撤销",
+              onClick: () => {
+                actions.taskUpdate.mutate(
+                  { task: deleted, patch: { deleted_at: "" } },
+                  {
+                    onSuccess: () => toast.success("任务已恢复"),
+                  }
+                )
+              },
+            },
+          })
+        },
+      }
+    )
+  }
   const filtered = tasks.filter((task) => {
     if (page === "trash" ? !task.deleted_at : !!task.deleted_at) return false
     if (page === "tasks" && task.assignee !== user?.id) return false
@@ -226,12 +240,22 @@ export default function Workspace() {
     const cell = (v: string) =>
       `"${(/^[=+@-]/.test(v) ? "'" + v : v).replaceAll('"', '""')}"`
     const rows = [
-      ["任务编号", "任务名称", "项目", "状态", "负责人", "截止日期", "标签"],
+      [
+        "任务编号",
+        "任务名称",
+        "项目",
+        "状态",
+        "优先级",
+        "负责人",
+        "截止日期",
+        "标签",
+      ],
       ...filtered.map((t) => [
         t.id,
         t.title,
         projects.find((p) => p.id === t.project)?.name || "",
         statuses.find((s) => s.value === t.status)?.label || "",
+        priorities.find((p) => p.value === t.priority)?.label || "",
         members.find((m) => m.id === t.assignee)?.name || "",
         dateInput(t.due),
         t.label,
@@ -289,7 +313,8 @@ export default function Workspace() {
             <div className="sidebar-search">
               <Button variant="outline" onClick={() => setSearchOpen(true)}>
                 <Search size={14} />
-                搜索工作空间<kbd>⌘ K</kbd>
+                <span>搜索工作空间</span>
+                <kbd>⌘ K</kbd>
               </Button>
             </div>
             <SidebarGroup>
@@ -378,7 +403,7 @@ export default function Workspace() {
                 <SidebarMenuButton
                   onClick={() =>
                     toast.info(
-                      "⌘K / Ctrl+K 搜索；拖动列表手柄排序；看板跨列拖动更改状态；右侧分隔线可调整详情宽度。"
+                      "⌘K / Ctrl+K 搜索；列表可直接修改状态、优先级、负责人和日期；点击圆圈完成任务；日期按 Enter 或离开后保存、Esc 取消；拖动手柄排序，看板支持跨列移动。"
                     )
                   }
                 >
@@ -920,8 +945,8 @@ export default function Workspace() {
                               {page === "trash"
                                 ? "数据保留在服务器，可随时恢复"
                                 : view === "board"
-                                  ? "拖动手柄跨列移动，或打开详情修改状态"
-                                  : "拖动手柄排序 · 支持键盘空格与方向键"}
+                                  ? "直接修改优先级 · 拖动手柄跨列更改状态"
+                                  : "点击字段直接修改 · 圆圈完成 · 手柄排序"}
                             </span>
                             <span>共 {filtered.length} 项</span>
                           </div>
@@ -1066,6 +1091,18 @@ export default function Workspace() {
               id="dark-mode"
               checked={dark}
               onCheckedChange={(value) => set({ dark: value })}
+            />
+          </div>
+          <div className="setting-row font-setting">
+            <div>
+              <Label>字体大小</Label>
+              <p>立即应用到整个界面，并保存在当前浏览器</p>
+            </div>
+            <FormSelect
+              label="字体大小"
+              value={fontSize}
+              options={fontSizes}
+              onChange={(value) => set({ fontSize: value })}
             />
           </div>
           <div className="setting-row">

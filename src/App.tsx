@@ -3,7 +3,7 @@ import { Layers, LoaderCircle } from "lucide-react"
 import { Toaster } from "sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { useAuth } from "@/lib/auth"
-import { useUI } from "@/store"
+import { fontSizes, useUI } from "@/store"
 import { AuthScreen } from "@/features/AuthScreen"
 import "./app.css"
 import "./production.css"
@@ -23,6 +23,10 @@ export default function App() {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark)
   }, [dark])
+  const fontSize = useUI((s) => s.fontSize)
+  useEffect(() => {
+    document.documentElement.style.fontSize = `${fontSizes.some((size) => size.value === fontSize) ? fontSize : "100"}%`
+  }, [fontSize])
   return (
     <TooltipProvider>
       {!ready ? (

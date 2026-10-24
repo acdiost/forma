@@ -110,14 +110,11 @@ export function useActions() {
       task: Task
       patch: Partial<TaskInput & Pick<Task, "deleted_at" | "position">>
     }) =>
-      pb
-        .collection<Task>("tasks")
-        .update(task.id, patch, {
-          headers: { "X-Record-Version": String(task.version) },
-        }),
-    onSuccess: () => {
-      void refresh()
-    },
+      pb.collection<Task>("tasks").update(task.id, patch, {
+        headers: { "X-Record-Version": String(task.version) },
+      }),
+    // Keep quick controls disabled until the new version is available in cache.
+    onSuccess: () => refresh(),
     onError: failed,
   })
   const projectCreate = useMutation({
@@ -139,11 +136,9 @@ export function useActions() {
         Pick<Project, "name" | "description" | "color" | "archived">
       >
     }) =>
-      pb
-        .collection<Project>("projects")
-        .update(project.id, patch, {
-          headers: { "X-Record-Version": String(project.version) },
-        }),
+      pb.collection<Project>("projects").update(project.id, patch, {
+        headers: { "X-Record-Version": String(project.version) },
+      }),
     onSuccess: () => {
       void refresh()
       toast.success("项目已更新")
@@ -157,14 +152,12 @@ export function useActions() {
       password: string
       role: string
     }) =>
-      pb
-        .collection<Member>("members")
-        .create({
-          ...data,
-          passwordConfirm: data.password,
-          active: true,
-          emailVisibility: true,
-        }),
+      pb.collection<Member>("members").create({
+        ...data,
+        passwordConfirm: data.password,
+        active: true,
+        emailVisibility: true,
+      }),
     onSuccess: () => {
       void refresh()
       toast.success("成员已创建")
@@ -213,12 +206,10 @@ export function useComments(task: Task) {
   const comments = useQuery({
     queryKey: ["workspace", user?.id, "comments", task.id],
     queryFn: () =>
-      pb
-        .collection<Comment>("comments")
-        .getFullList({
-          filter: pb.filter("task = {:task}", { task: task.id }),
-          sort: "created",
-        }),
+      pb.collection<Comment>("comments").getFullList({
+        filter: pb.filter("task = {:task}", { task: task.id }),
+        sort: "created",
+      }),
   })
   const create = useMutation({
     mutationFn: (body: string) =>

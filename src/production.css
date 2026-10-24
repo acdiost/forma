@@ -1,13 +1,13 @@
 /* v0.0.1: readable working density, real data states and account flows. */
 body {
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 .workspace-switch {
   display: flex;
   align-items: center;
 }
 .sidebar-empty {
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--muted-foreground);
   padding: 9px 11px;
   line-height: 1.8;
@@ -18,70 +18,70 @@ body {
   gap: 3px;
 }
 .sidebar-profile strong {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
-.sidebar-profile span {
-  font-size: 10px;
+.sidebar-profile > div > span {
+  font-size: 0.625rem;
 }
 [data-slot="sidebar-menu-button"] {
-  font-size: 13px;
+  font-size: 0.8125rem;
   height: 39px;
 }
 .sidebar-search button {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .sidebar-bottom-card p {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .topbar > div {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .sync-label {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .page-heading p {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .eyebrow {
-  font-size: 9px;
+  font-size: 0.5625rem;
 }
 .metric-label {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .metric-card p {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .metric-pill {
-  font-size: 9px;
+  font-size: 0.5625rem;
 }
 .section-heading h2,
 .work-section h2 {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .section-heading p,
 .work-section-header p {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .focus-card p {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .focus-progress {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .focus-progress strong {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .focus-bottom button {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .focus-kicker {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .chart-legend {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .chart-legend > strong {
-  font-size: 25px;
+  font-size: 1.5625rem;
 }
 .clamp-one {
   overflow: hidden;
@@ -89,12 +89,12 @@ body {
   white-space: nowrap;
 }
 .muted-small {
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--muted-foreground);
   line-height: 1.8;
 }
 .work-controls [data-slot="tabs-trigger"] {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .task-toolbar {
   height: auto;
@@ -110,7 +110,7 @@ body {
   flex: 1;
 }
 .task-search input {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .toolbar-filter {
   display: flex;
@@ -121,11 +121,11 @@ body {
 .toolbar-filter > [data-slot="select-trigger"],
 .project-filter > [data-slot="select-trigger"] {
   height: 30px;
-  font-size: 11px;
+  font-size: 0.6875rem;
   max-width: 145px;
 }
 .task-table [data-slot="table-head"] {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .task-table [data-slot="table-cell"] {
   height: 61px;
@@ -137,30 +137,30 @@ body {
   padding: 0;
   text-align: left;
   line-height: 1.6;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   white-space: normal;
   max-width: 260px;
   color: var(--foreground);
 }
 .task-title > span {
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 .status {
-  font-size: 10px !important;
+  font-size: 0.625rem !important;
 }
 .priority {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .due-cell {
-  font-size: 10px !important;
+  font-size: 0.625rem !important;
 }
 .due-cell.overdue,
 .overdue {
   color: #bf7155 !important;
 }
 .table-footer {
-  font-size: 10px;
+  font-size: 0.625rem;
   gap: 15px;
 }
 .board-title[data-slot="button"] {
@@ -169,63 +169,63 @@ body {
   display: block;
   text-align: left;
   white-space: normal;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1.7;
   color: var(--foreground);
   text-decoration: none;
 }
 .board-card p {
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 .board-card-top {
-  font-size: 9px;
+  font-size: 0.5625rem;
 }
 .board-column {
   min-width: 200px;
 }
 .board-column > header {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .board-bottom [data-slot="badge"] {
-  font-size: 9px;
+  font-size: 0.5625rem;
 }
 .board-add {
-  font-size: 11px !important;
+  font-size: 0.6875rem !important;
 }
 .detail-panel {
   max-height: 800px;
   overflow-y: auto;
 }
 .task-detail-content > label {
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--muted-foreground);
   display: block;
   margin: 15px 0 7px;
 }
 .task-detail-content > [data-slot="select-trigger"] {
   width: 100%;
-  font-size: 12px;
+  font-size: 0.75rem;
   height: 33px;
 }
 .task-detail-content h3 {
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.7;
   margin: 9px 0;
 }
 .detail-id {
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 .detail-description {
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1.9;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 .detail-heading {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .detail-meta {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .detail-actions {
   display: flex;
@@ -234,13 +234,13 @@ body {
   flex-wrap: wrap;
 }
 .detail-actions button {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .detail-actions > button:last-child {
   margin-left: auto;
 }
 .comments-heading {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -251,7 +251,7 @@ body {
   margin-bottom: 19px;
 }
 .comments-heading > span {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--muted-foreground);
   margin-left: auto;
 }
@@ -265,18 +265,18 @@ body {
   flex: 1;
 }
 .comment strong {
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 500;
 }
 .comment p {
-  font-size: 12px;
+  font-size: 0.75rem;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   line-height: 1.8;
   margin-top: 5px;
 }
 .comment time {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--muted-foreground);
   display: block;
   margin-top: 7px;
@@ -288,23 +288,23 @@ body {
   margin-bottom: 20px;
 }
 .comment-form textarea {
-  font-size: 12px;
+  font-size: 0.75rem;
   min-height: 80px;
 }
 .comment-form button {
   align-self: flex-end;
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .activity-item p {
-  font-size: 11px;
+  font-size: 0.6875rem;
   white-space: normal;
   line-height: 1.6;
 }
 .activity-item strong {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .activity-item button[data-slot="button"] {
-  font-size: 11px;
+  font-size: 0.6875rem;
   line-height: 1.7;
   white-space: normal;
   display: block;
@@ -315,7 +315,7 @@ body {
   max-width: 100%;
 }
 .activity-item time {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--muted-foreground);
   display: block;
   margin-top: 7px;
@@ -335,19 +335,19 @@ body {
   align-items: center;
   margin-bottom: 19px;
   color: var(--muted-foreground);
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .project-card h2 {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 .project-card p {
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1.8;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 .project-card footer button {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .project-actions,
 .member-actions {
@@ -357,24 +357,24 @@ body {
 }
 .team-content td,
 .team-content th {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .member > span {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .member-actions button {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .person {
   width: 29px;
   height: 29px;
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .page-footer {
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 .form-fields small {
-  font-size: 11px;
+  font-size: 0.6875rem;
   line-height: 1.7;
   color: var(--muted-foreground);
   display: block;
@@ -383,15 +383,15 @@ body {
 .form-fields input,
 .form-fields textarea,
 .form-fields [data-slot="select-trigger"] {
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 .field-error {
   color: var(--destructive);
-  font-size: 11px;
+  font-size: 0.6875rem;
   margin-top: 6px;
 }
 .form-error {
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1.8;
   color: var(--destructive);
   background: color-mix(in srgb, var(--destructive) 5%, transparent);
@@ -406,7 +406,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 15px;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--destructive);
   padding: 13px 16px;
   background: color-mix(in srgb, var(--destructive) 5%, transparent);
@@ -415,7 +415,7 @@ body {
   margin-bottom: 20px;
 }
 .account-info {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted-foreground);
   line-height: 1.9;
   padding: 13px 0;
@@ -456,7 +456,7 @@ body {
   margin-bottom: 32px;
 }
 .auth-brand strong {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 600;
   letter-spacing: -1.5px;
 }
@@ -474,13 +474,13 @@ body {
   padding: 30px;
 }
 .auth-card h1 {
-  font-size: 25px;
+  font-size: 1.5625rem;
   font-weight: 550;
   letter-spacing: -0.8px;
   margin: 14px 0 10px;
 }
 .auth-intro {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted-foreground);
   line-height: 1.9;
 }
@@ -496,24 +496,24 @@ body {
   height: 38px;
 }
 .auth-help {
-  font-size: 11px;
+  font-size: 0.6875rem;
   text-align: center;
   margin-top: 4px !important;
 }
 .auth-footer {
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--muted-foreground);
   margin-top: 23px;
 }
 .auth-footer span {
   margin-left: 12px;
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 .loading-inline {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted-foreground);
   padding: 30px 0;
 }
@@ -527,21 +527,21 @@ body {
   color: var(--muted-foreground);
 }
 .startup p {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .inline-startup {
   min-height: 45vh;
 }
 .empty-state p {
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1.9;
   max-width: 300px;
 }
 .empty-state h3 {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .empty-state button {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .task-dialog {
   max-height: 90dvh;
@@ -585,49 +585,49 @@ body {
     padding-right: 15px;
   }
   .page-heading h1 {
-    font-size: 23px;
+    font-size: 1.4375rem;
   }
   .page-heading p {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .heading-actions button {
-    font-size: 12px;
+    font-size: 0.75rem;
     height: 34px;
   }
   .metric-grid {
     gap: 10px;
   }
   .metric-value {
-    font-size: 29px;
+    font-size: 1.8125rem;
   }
   .metric-card p {
-    font-size: 10px;
+    font-size: 0.625rem;
     line-height: 1.6;
   }
   .metric-label {
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
   .chart-area {
     height: 170px;
   }
   .work-section-header h2 {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
   .work-section-header p {
     max-width: 190px;
     line-height: 1.6;
-    font-size: 10px;
+    font-size: 0.625rem;
   }
   .task-search {
     max-width: none;
     min-width: 100px;
   }
   .task-search input {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .toolbar-filter > [data-slot="select-trigger"] {
     max-width: 100px;
-    font-size: 10px;
+    font-size: 0.625rem;
     padding: 0 8px;
   }
   .project-filter {
@@ -638,14 +638,14 @@ body {
   .project-filter > [data-slot="select-trigger"] {
     width: 100%;
     max-width: none;
-    font-size: 11px;
+    font-size: 0.6875rem;
     height: 29px;
   }
   .task-title {
     min-width: 145px;
   }
   .task-title > button[data-slot="button"] {
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
   .task-table .due-cell,
   .task-table th:nth-last-child(2) {
@@ -655,17 +655,17 @@ body {
     height: 64px;
   }
   .task-table [data-slot="table-head"] {
-    font-size: 10px !important;
+    font-size: 0.625rem !important;
   }
   .task-title > span {
-    font-size: 9px;
+    font-size: 0.5625rem;
   }
   .status {
-    font-size: 9px !important;
+    font-size: 0.5625rem !important;
   }
   .team-content td,
   .team-content th {
-    font-size: 11px;
+    font-size: 0.6875rem;
     padding: 12px 7px;
   }
   .team-content [data-slot="table-head"] {
@@ -676,24 +676,24 @@ body {
     gap: 0;
   }
   .member-actions button {
-    font-size: 10px;
+    font-size: 0.625rem;
     height: 25px;
   }
   .projects-toolbar {
-    font-size: 11px;
+    font-size: 0.6875rem;
     gap: 10px;
   }
   .project-card footer {
     gap: 8px;
   }
   .project-card footer button {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
   .table-footer {
-    font-size: 9px;
+    font-size: 0.5625rem;
   }
   .page-footer {
-    font-size: 9px;
+    font-size: 0.5625rem;
   }
   .page-footer > span:nth-child(2) {
     display: none;
@@ -708,7 +708,7 @@ body {
     gap: 14px;
   }
   .form-fields label {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 }
 
@@ -719,21 +719,21 @@ body {
   gap: 13px;
 }
 .password-form h3 {
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 500;
 }
 .password-form label {
-  font-size: 11px;
+  font-size: 0.6875rem;
   display: block;
   margin-bottom: 6px;
 }
 .password-form input {
   height: 32px;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .password-form > button {
   align-self: flex-end;
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .password-form .form-grid {
   gap: 12px;
@@ -743,4 +743,97 @@ body {
   .sidebar-bottom-card {
     display: none;
   }
+}
+
+/* Inline task actions retain shadcn/Radix keyboard and focus behavior. */
+.task-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.task-name-cell .task-title {
+  min-width: 170px;
+}
+.task-complete[data-slot="button"] {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--muted-foreground);
+}
+.task-complete[aria-pressed="true"] {
+  color: var(--primary);
+}
+.task-choice[data-slot="button"] {
+  height: auto;
+  min-height: 30px;
+  padding: 3px 5px;
+  font-size: inherit;
+  gap: 0;
+}
+.task-choice:disabled {
+  opacity: 1;
+}
+.task-choice .person {
+  margin: 0;
+}
+.task-due[data-slot="input"] {
+  width: 145px;
+  min-height: 30px;
+  height: auto;
+  font-size: 0.6875rem;
+  padding: 4px;
+  border-color: transparent;
+  box-shadow: none;
+  background: transparent;
+  color: inherit;
+}
+.task-due:hover,
+.task-due:focus {
+  border-color: var(--border);
+}
+.board-card-top .task-choice {
+  margin-left: auto;
+}
+.board-card-top .task-choice .priority {
+  font-size: 0.6875rem;
+}
+.font-setting {
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.font-setting [data-slot="select-trigger"] {
+  min-width: 150px;
+}
+[data-slot="dialog-content"] {
+  max-height: 90dvh;
+  overflow-y: auto;
+}
+.person [data-slot="avatar-fallback"] {
+  font-size: inherit;
+}
+
+/* Nova's track uses px while its thumb uses rem; keep both in step with text size. */
+.setting-row [data-slot="switch"][data-size="default"] {
+  width: 2rem;
+  height: 1.15rem;
+}
+.sidebar-search button > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar-search kbd {
+  flex-shrink: 0;
+}
+.sidebar-profile > div {
+  min-width: 0;
+}
+.sidebar-profile strong,
+.sidebar-profile > div > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.task-due[data-slot="input"] {
+  width: 9rem;
 }

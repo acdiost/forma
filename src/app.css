@@ -34,7 +34,7 @@ body {
     "PingFang SC",
     "Microsoft YaHei",
     sans-serif;
-  font-size: 13px;
+  font-size: 0.8125rem;
   -webkit-font-smoothing: antialiased;
 }
 button {
@@ -74,7 +74,7 @@ input {
   padding: 0 3px;
 }
 [data-slot="sidebar-group-label"] {
-  font-size: 11px;
+  font-size: 0.6875rem;
   letter-spacing: 1px;
   color: var(--muted-foreground);
   padding-left: 10px;
@@ -86,7 +86,7 @@ input {
 }
 [data-slot="sidebar-menu-button"] {
   height: 37px;
-  font-size: 12px;
+  font-size: 0.75rem;
   padding: 0 12px;
   gap: 11px;
   border-radius: 6px;
@@ -129,12 +129,12 @@ input {
   gap: 2px;
 }
 .workspace-switch strong {
-  font-size: 22px;
+  font-size: 1.375rem;
   letter-spacing: -1px;
   font-weight: 650;
 }
 .workspace-switch small {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--muted-foreground);
   font-weight: 400;
   letter-spacing: 1px;
@@ -151,7 +151,7 @@ input {
   height: 33px;
   justify-content: flex-start;
   color: var(--muted-foreground);
-  font-size: 12px;
+  font-size: 0.75rem;
   gap: 8px;
   background: var(--background);
   border-color: var(--border);
@@ -159,11 +159,11 @@ input {
 }
 .sidebar-search kbd {
   margin-left: auto;
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .nav-count {
   margin-left: auto;
-  font-size: 11px;
+  font-size: 0.6875rem;
   background: #dce2d2;
   padding: 0px 5px;
   border-radius: 4px;
@@ -186,18 +186,18 @@ input {
   align-items: center;
   gap: 6px;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #667058;
 }
 .sidebar-bottom-card p {
-  font-size: 11px;
+  font-size: 0.6875rem;
   line-height: 1.9;
   color: #8c9381;
   margin: 10px 0 13px;
 }
 .sidebar-bottom-card button {
   width: 100%;
-  font-size: 11px;
+  font-size: 0.6875rem;
   background: var(--background);
   height: 29px;
   color: #737c68;
@@ -226,11 +226,11 @@ input {
   gap: 3px;
 }
 .sidebar-profile strong {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
 }
-.sidebar-profile span {
-  font-size: 10px;
+.sidebar-profile > div > span {
+  font-size: 0.625rem;
   color: var(--muted-foreground);
 }
 .sidebar-profile > button {
@@ -239,7 +239,7 @@ input {
 .person {
   width: 27px;
   height: 27px;
-  font-size: 12px;
+  font-size: 0.75rem;
   border: 2px solid var(--background);
   flex-shrink: 0;
 }
@@ -276,7 +276,7 @@ input {
   display: flex;
   align-items: center;
   gap: 13px;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted-foreground);
 }
 .topbar strong {
@@ -294,7 +294,7 @@ input {
   width: 27px;
 }
 .sync-label {
-  font-size: 11px;
+  font-size: 0.6875rem;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -333,14 +333,14 @@ input {
   gap: 20px;
 }
 .eyebrow {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #a3a498;
   letter-spacing: 2px;
   font-weight: 500;
   margin-bottom: 12px;
 }
 .page-heading h1 {
-  font-size: 25px;
+  font-size: 1.5625rem;
   font-weight: 580;
   letter-spacing: -0.8px;
   display: flex;
@@ -350,12 +350,12 @@ input {
 }
 .heading-dot {
   color: #bd865f;
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 400;
 }
 .page-heading p {
   color: var(--muted-foreground);
-  font-size: 12px;
+  font-size: 0.75rem;
   margin-top: 6px;
   line-height: 1.8;
 }
@@ -363,7 +363,7 @@ input {
   border-left: 1px solid var(--border);
   padding-left: 12px;
   margin-left: 12px;
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: #a2a497;
 }
 .heading-actions {
@@ -374,7 +374,7 @@ input {
 }
 .heading-actions button {
   height: 32px;
-  font-size: 12px;
+  font-size: 0.75rem;
   padding: 0 12px;
   box-shadow: 0 2px 2px #00000003;
 }
@@ -397,7 +397,7 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #787c70;
 }
 .metric-label svg {
@@ -405,7 +405,7 @@ input {
   stroke-width: 1.4;
 }
 .metric-value {
-  font-size: 31px;
+  font-size: 1.9375rem;
   font-weight: 500;
   letter-spacing: -1.4px;
   display: flex;
@@ -415,7 +415,7 @@ input {
   line-height: 1.15;
 }
 .metric-pill {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #7d8e68;
   background: #f0f3eb;
   letter-spacing: 0;
@@ -424,7 +424,7 @@ input {
   border-radius: 4px;
 }
 .metric-card p {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #878d7c;
   display: flex;
   align-items: center;
@@ -463,14 +463,14 @@ input {
 }
 .section-heading h2,
 .work-section h2 {
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 550;
   display: flex;
   align-items: center;
   gap: 7px;
 }
 .section-heading h2 [data-slot="badge"] {
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 400;
   color: var(--muted-foreground);
   padding: 1px 5px;
@@ -478,13 +478,13 @@ input {
 }
 .section-heading p,
 .work-section-header p {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--muted-foreground);
   margin-top: 5px;
 }
 .period-select {
   height: 28px !important;
-  font-size: 11px !important;
+  font-size: 0.6875rem !important;
   width: 74px !important;
 }
 .chart-legend {
@@ -492,7 +492,7 @@ input {
   align-items: center;
   gap: 16px;
   margin-top: 17px;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--muted-foreground);
 }
 .chart-legend > span {
@@ -511,12 +511,12 @@ input {
 }
 .chart-legend strong {
   margin-left: auto;
-  font-size: 23px;
+  font-size: 1.4375rem;
   color: var(--foreground);
   font-weight: 500;
 }
 .chart-legend small {
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 400;
   color: var(--muted-foreground);
 }
@@ -537,7 +537,7 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: #8a887a;
 }
 .focus-kicker > span {
@@ -546,7 +546,7 @@ input {
   gap: 5px;
 }
 .focus-kicker [data-slot="badge"] {
-  font-size: 7px;
+  font-size: 0.4375rem;
   padding: 1px 5px;
   color: #96917f;
   border-color: #ded9cd;
@@ -596,13 +596,13 @@ input {
   top: 39px;
 }
 .focus-card h2 {
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 550;
   letter-spacing: -0.3px;
   margin-top: 6px;
 }
 .focus-card p {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #9b9788;
   margin-top: 6px;
 }
@@ -610,12 +610,12 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--muted-foreground);
   margin: 17px 0 7px;
 }
 .focus-progress strong {
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 500;
   color: #8a8c72;
 }
@@ -642,11 +642,11 @@ input {
 .avatar-stack .person {
   width: 24px;
   height: 24px;
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 .focus-bottom button {
   height: 24px;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #8b8877;
   padding: 0;
   gap: 5px;
@@ -670,7 +670,7 @@ input {
 .work-section h2 [data-slot="badge"] {
   height: 17px;
   min-width: 20px;
-  font-size: 10px;
+  font-size: 0.625rem;
   padding: 1px 5px;
   background: #f1f2ed;
   color: #898f80;
@@ -687,7 +687,7 @@ input {
   border: 1px solid #e9ebe4;
 }
 .work-controls [data-slot="tabs-trigger"] {
-  font-size: 11px;
+  font-size: 0.6875rem;
   height: 23px;
   gap: 5px;
   padding: 0 9px;
@@ -733,7 +733,7 @@ input {
   color: #a7aa9e;
 }
 .task-search input {
-  font-size: 11px;
+  font-size: 0.6875rem;
   height: 29px;
   padding: 0;
   border: 0;
@@ -753,7 +753,7 @@ input {
 }
 .filter-select {
   width: 110px !important;
-  font-size: 11px !important;
+  font-size: 0.6875rem !important;
   height: 28px !important;
   padding: 0 9px !important;
   gap: 5px !important;
@@ -767,7 +767,7 @@ input {
 }
 .task-count {
   color: var(--muted-foreground);
-  font-size: 10px;
+  font-size: 0.625rem;
   white-space: nowrap;
 }
 .task-toolbar > button {
@@ -776,7 +776,7 @@ input {
   color: var(--muted-foreground);
 }
 .task-table [data-slot="table-head"] {
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 400;
   color: #9a9e91;
   background: #fafbf8;
@@ -790,7 +790,7 @@ input {
 .task-table [data-slot="table-cell"] {
   padding: 10px 8px;
   height: 57px;
-  font-size: 11px;
+  font-size: 0.6875rem;
   border-color: var(--border);
 }
 .task-table [data-slot="table-row"] {
@@ -815,7 +815,7 @@ input {
 }
 .task-title > button {
   text-align: left;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--foreground);
   font-weight: 450;
   width: max-content;
@@ -826,7 +826,7 @@ input {
   color: var(--primary);
 }
 .task-title > span {
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.2px;
   color: #929988;
 }
@@ -835,7 +835,7 @@ input {
   margin: 0 4px;
 }
 .status {
-  font-size: 10px !important;
+  font-size: 0.625rem !important;
   font-weight: 400 !important;
   padding: 2px 6px !important;
   gap: 4px !important;
@@ -863,7 +863,7 @@ input {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 .priority-高 {
   color: #c58e77;
@@ -876,7 +876,7 @@ input {
 }
 .due-cell {
   color: #9ca190;
-  font-size: 10px !important;
+  font-size: 0.625rem !important;
   white-space: nowrap;
 }
 .more {
@@ -890,7 +890,7 @@ input {
   padding: 10px 20px !important;
   height: 38px !important;
   color: #a0a68f;
-  font-size: 11px;
+  font-size: 0.6875rem;
   border-radius: 0;
 }
 .table-footer {
@@ -899,7 +899,7 @@ input {
   align-items: center;
   padding: 10px 17px;
   border-top: 1px solid var(--border);
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #949d85;
 }
 .table-footer > span:first-child {
@@ -921,7 +921,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   border-bottom: 1px solid var(--border);
   margin-bottom: 16px;
@@ -935,7 +935,7 @@ input {
   height: 24px;
 }
 .activity-date {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #8a927d;
   margin-bottom: 20px;
 }
@@ -958,22 +958,22 @@ input {
 .activity-item .person {
   width: 27px;
   height: 27px;
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .activity-item p {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #859274;
   margin: 1px 0 6px;
   white-space: nowrap;
 }
 .activity-item strong {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #7a826e;
   font-weight: 500;
   margin-right: 3px;
 }
 .activity-item button {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #7f8971;
   display: block;
   text-align: left;
@@ -982,9 +982,9 @@ input {
 .activity-item button:hover {
   color: var(--primary);
 }
-.activity-item span {
+.activity-item time {
   display: block;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #969f88;
   margin-top: 7px;
 }
@@ -997,11 +997,11 @@ input {
   display: flex;
   gap: 5px;
   align-items: center;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #98a388;
 }
 .activity-note p {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #8f9981;
   line-height: 1.8;
   margin-top: 8px;
@@ -1017,47 +1017,47 @@ input {
   margin-bottom: 9px;
 }
 .deadline-card h4 {
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 500;
   margin-bottom: 5px;
   color: #839170;
 }
 .deadline-card p {
-  font-size: 10px;
+  font-size: 0.625rem;
   margin-bottom: 10px;
 }
 .deadline-card > span {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 .deadline-card [data-slot="badge"] {
-  font-size: 7px;
+  font-size: 0.4375rem;
   font-weight: 400;
   color: #a7ac97;
   border-color: #e0e6d8;
   padding: 1px 4px;
 }
 .detail-id {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--muted-foreground);
 }
 .detail-panel h3 {
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 550;
   line-height: 1.6;
   margin-top: 8px;
 }
 .detail-description {
-  font-size: 11px;
+  font-size: 0.6875rem;
   line-height: 1.9;
   color: var(--muted-foreground);
   margin-top: 12px;
   margin-bottom: 17px;
 }
 .detail-panel > label {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--muted-foreground);
   margin: 13px 0 7px;
   display: block;
@@ -1065,10 +1065,10 @@ input {
 .detail-panel > [data-slot="select-trigger"] {
   width: 100%;
   height: 30px;
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .detail-meta {
-  font-size: 10px;
+  font-size: 0.625rem;
   line-height: 1.6;
   display: flex;
   align-items: center;
@@ -1082,7 +1082,7 @@ input {
   margin-left: auto;
 }
 .detail-panel > .w-full {
-  font-size: 11px;
+  font-size: 0.6875rem;
   height: 30px;
 }
 .board {
@@ -1114,7 +1114,7 @@ input {
   justify-content: space-between;
   margin-bottom: 12px;
   padding: 0 3px;
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: #969f88;
 }
 .board-column > header > div {
@@ -1123,7 +1123,7 @@ input {
   align-items: center;
 }
 .board-column > header > div > span {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #b0b7a6;
   margin-left: 5px;
 }
@@ -1147,18 +1147,18 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #aeb5a3;
 }
 .board-title {
   text-align: left;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   margin: 7px 0;
   line-height: 1.8;
 }
 .board-card p {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--muted-foreground);
 }
 .board-bottom {
@@ -1168,7 +1168,7 @@ input {
   margin-top: 15px;
 }
 .board-bottom [data-slot="badge"] {
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 400;
   background: #f3f4ee;
   color: #949d87;
@@ -1177,10 +1177,10 @@ input {
 .board-bottom .person {
   width: 22px;
   height: 22px;
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 .board-add {
-  font-size: 10px !important;
+  font-size: 0.625rem !important;
   color: #a5ae99;
   width: 100%;
   justify-content: flex-start !important;
@@ -1196,7 +1196,7 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #949d85;
   padding: 20px 1px;
 }
@@ -1206,7 +1206,7 @@ input {
   gap: 6px;
 }
 .demo-label {
-  font-size: 7px;
+  font-size: 0.4375rem;
   letter-spacing: 1px;
   padding: 1px 4px;
   background: #f2f3ee;
@@ -1221,14 +1221,14 @@ input {
   margin: 24px 0;
 }
 .form-fields label {
-  font-size: 12px;
+  font-size: 0.75rem;
   margin-bottom: 8px;
   display: block;
 }
 .form-fields input,
 .form-fields textarea,
 .form-fields [data-slot="select-trigger"] {
-  font-size: 12px;
+  font-size: 0.75rem;
   width: 100%;
   min-height: 34px;
 }
@@ -1248,15 +1248,15 @@ input {
   border-bottom: 1px solid var(--border);
 }
 .setting-row label {
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 .setting-row p {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted-foreground);
   margin-top: 7px;
 }
 .demo-info {
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1.9;
   padding: 13px;
   background: var(--muted);
@@ -1277,11 +1277,11 @@ input {
   color: var(--primary);
 }
 .notification-row strong {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 .notification-row p {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted-foreground);
   margin-top: 8px;
 }
@@ -1307,15 +1307,15 @@ input {
 }
 .project-card [data-slot="badge"] {
   float: right;
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--muted-foreground);
 }
 .project-card h2 {
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 500;
 }
 .project-card p {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted-foreground);
   margin-top: 10px;
 }
@@ -1326,7 +1326,7 @@ input {
   margin-top: 25px;
 }
 .project-card footer button {
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .team-content {
   padding: 24px;
@@ -1337,7 +1337,7 @@ input {
 .team-content td,
 .team-content th {
   padding: 17px 12px;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .member {
   display: flex;
@@ -1349,12 +1349,12 @@ input {
 }
 .member > span {
   color: var(--muted-foreground);
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .online {
   background: #edf3e8 !important;
   color: #7a9469;
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 .empty-state {
   padding: 60px 20px;
@@ -1366,14 +1366,14 @@ input {
   color: var(--muted-foreground);
 }
 .empty-state h3 {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--foreground);
 }
 .empty-state p {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .empty-state button {
-  font-size: 12px;
+  font-size: 0.75rem;
   margin-top: 5px;
 }
 @media (min-width: 1550px) {
@@ -1423,7 +1423,7 @@ input {
     display: none;
   }
   .page-heading h1 {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
   .metric-grid {
     gap: 10px;
@@ -1440,10 +1440,10 @@ input {
     display: none;
   }
   .activity-item p {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
   .metric-card p {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
   .sync-label {
     display: none;
@@ -1460,22 +1460,22 @@ input {
     margin-top: 29px;
   }
   .heading-actions button {
-    font-size: 11px;
+    font-size: 0.6875rem;
     padding: 0 9px;
   }
   .eyebrow {
-    font-size: 7px;
+    font-size: 0.4375rem;
     letter-spacing: 1.1px;
   }
   .page-heading h1 {
-    font-size: 20px;
+    font-size: 1.25rem;
     gap: 5px;
   }
   .heading-dot {
-    font-size: 25px;
+    font-size: 1.5625rem;
   }
   .metric-value {
-    font-size: 27px;
+    font-size: 1.6875rem;
   }
   .metric-pill {
     display: none;
@@ -1523,10 +1523,10 @@ input {
     margin-bottom: 22px;
   }
   .page-heading h1 {
-    font-size: 23px;
+    font-size: 1.4375rem;
   }
   .page-heading p {
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
   .heading-actions {
     margin-top: 18px;
@@ -1540,11 +1540,11 @@ input {
     padding: 15px;
   }
   .metric-value {
-    font-size: 29px;
+    font-size: 1.8125rem;
     margin-top: 9px;
   }
   .metric-label {
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
   .metric-pill {
     display: block;
@@ -1563,7 +1563,7 @@ input {
     margin-bottom: 24px;
   }
   .work-section-header p {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
   .work-section-header {
     gap: 7px;
@@ -1572,7 +1572,7 @@ input {
     gap: 2px;
   }
   .work-controls [data-slot="tabs-trigger"] {
-    font-size: 10px;
+    font-size: 0.625rem;
     min-width: 40px;
     padding: 0 6px;
   }
@@ -1589,13 +1589,13 @@ input {
   }
   .filter-select {
     width: 99px !important;
-    font-size: 10px !important;
+    font-size: 0.625rem !important;
   }
   .task-count {
     display: none;
   }
   .task-table .task-title > button {
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
   .task-table th:nth-child(4),
   .task-table td:nth-child(4) {
@@ -1608,7 +1608,7 @@ input {
     min-width: 140px;
   }
   .status {
-    font-size: 10px !important;
+    font-size: 0.625rem !important;
     padding: 2px 4px !important;
     gap: 3px !important;
   }
@@ -1618,16 +1618,16 @@ input {
   .person {
     width: 24px;
     height: 24px;
-    font-size: 10px;
+    font-size: 0.625rem;
   }
   .task-table th {
-    font-size: 10px !important;
+    font-size: 0.625rem !important;
   }
   .page-footer > span:nth-child(2) {
     font-size: 0;
   }
   .page-footer .demo-label {
-    font-size: 7px;
+    font-size: 0.4375rem;
   }
   .projects-grid {
     grid-template-columns: 1fr;
@@ -1638,7 +1638,7 @@ input {
   .team-content td,
   .team-content th {
     padding: 12px 7px;
-    font-size: 10px;
+    font-size: 0.625rem;
   }
   .member {
     gap: 6px;
@@ -1658,7 +1658,7 @@ input {
   padding: 8px 24px;
 }
 .mobile-task-detail p {
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1.9;
   color: var(--muted-foreground);
   margin-bottom: 10px;
@@ -1667,7 +1667,7 @@ input {
   width: 100%;
 }
 .mobile-task-detail label {
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--muted-foreground);
 }
 
@@ -1720,7 +1720,7 @@ body {
 .dark .work-section-header p {
   color: #a2ad94;
 }
-.dark .activity-item span,
+.dark .activity-item time,
 .dark .activity-date {
   color: #8d9a7e;
 }

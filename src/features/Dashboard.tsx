@@ -171,7 +171,10 @@ export function Dashboard({
                     dataKey="date"
                     axisLine={false}
                     tickLine={false}
-                    tick={{ fill: "var(--muted-foreground)", fontSize: 10 }}
+                    tick={{
+                      fill: "var(--muted-foreground)",
+                      fontSize: "0.625rem",
+                    }}
                     dy={8}
                   />
                   <Tooltip
@@ -179,7 +182,7 @@ export function Dashboard({
                       background: "var(--popover)",
                       border: "1px solid var(--border)",
                       borderRadius: 7,
-                      fontSize: 12,
+                      fontSize: "0.75rem",
                     }}
                   />
                   <Area
