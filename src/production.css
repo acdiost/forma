@@ -837,3 +837,252 @@ body {
 .task-due[data-slot="input"] {
   width: 9rem;
 }
+
+.help-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.help-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+.help-section-heading > svg,
+.help-action-icon {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+.help-eyebrow {
+  display: block;
+  color: var(--muted-foreground);
+  font-size: 0.6875rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+}
+.help-page h2 {
+  font-size: 1rem;
+  font-weight: 550;
+  line-height: 1.6;
+}
+.help-page h3 {
+  font-size: 0.875rem;
+  font-weight: 550;
+  line-height: 1.7;
+}
+.help-page p {
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+.help-section-heading p,
+.help-resources p {
+  margin-top: 0.3rem;
+}
+.help-start-grid,
+.help-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.help-start-grid {
+  list-style: none;
+  padding: 0;
+}
+.help-start-grid > li {
+  min-width: 0;
+}
+.help-step {
+  height: 100%;
+  background: color-mix(in srgb, var(--primary) 3%, var(--card));
+}
+.help-step > [data-slot="card-content"],
+.help-action > [data-slot="card-content"] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  gap: 0.6rem;
+  padding: 0.4rem 1.25rem;
+}
+.help-step-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+.help-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.65rem;
+  background: color-mix(in srgb, var(--primary) 9%, var(--card));
+  color: var(--primary);
+}
+.help-step-number {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  opacity: 0.65;
+}
+.help-step p,
+.help-action p {
+  margin-bottom: 0.5rem;
+}
+.help-step button,
+.help-action button {
+  margin-top: auto;
+  font-size: 0.75rem;
+  height: auto;
+  min-height: 2rem;
+  white-space: normal;
+  text-align: left;
+}
+.help-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 1.75rem;
+}
+.help-columns > section {
+  min-width: 0;
+}
+.help-actions-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.help-action-icon {
+  margin: 0.3rem 0;
+}
+.help-action button {
+  padding-left: 0;
+  padding-right: 0;
+}
+.help-shortcuts dl > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.help-shortcuts dl > div:first-child {
+  padding-top: 0;
+}
+.help-shortcuts dt {
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+.help-shortcuts dt > span {
+  display: block;
+  color: var(--muted-foreground);
+  font-size: 0.625rem;
+}
+.help-shortcuts dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.help-shortcuts kbd {
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 0.3rem;
+  padding: 0.15rem 0.4rem;
+  font-family: inherit;
+  font-size: 0.625rem;
+  background: var(--muted);
+  white-space: nowrap;
+}
+.help-keyboard-note {
+  margin-top: 1rem;
+}
+.help-settings {
+  margin-top: 0.8rem;
+  width: 100%;
+  height: auto;
+  min-height: 2.25rem;
+  padding: 0.65rem;
+  white-space: normal;
+  font-size: 0.75rem;
+}
+.help-questions details + details {
+  border-top: 1px solid var(--border);
+}
+.help-questions summary {
+  cursor: pointer;
+  padding: 1rem 0;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+.help-questions summary:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.help-questions p {
+  padding: 0 0 1rem;
+  max-width: 75ch;
+}
+.help-resources,
+.help-resource-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.help-resources {
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+.help-resources h2 {
+  font-size: 0.8125rem;
+}
+.help-resource-links {
+  gap: 0.5rem;
+}
+.help-resource-links a {
+  height: auto;
+  min-height: 2.25rem;
+  font-size: 0.75rem;
+  white-space: normal;
+}
+@media (max-width: 1100px) {
+  .help-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .help-start-grid,
+  .help-actions-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .help-page {
+    gap: 2rem;
+  }
+  .topbar > div:first-child {
+    min-width: 0;
+    flex: 1;
+  }
+  .topbar > div:last-child,
+  .topbar [data-slot="sidebar-trigger"] {
+    flex-shrink: 0;
+  }
+  .topbar strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .topbar-workspace,
+  .topbar-chevron,
+  .topbar-divider {
+    display: none;
+  }
+}

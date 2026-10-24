@@ -95,6 +95,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
+  useSidebar,
 } from "@/components/ui/sidebar"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { useActions, useWorkspace } from "@/hooks/use-workspace"
@@ -124,6 +125,7 @@ import {
 } from "@/features/Forms"
 import { TaskViews } from "@/features/TaskViews"
 import { TaskDetail } from "@/features/TaskDetail"
+import { Help } from "@/features/Help"
 
 const nav = [
   { id: "overview", label: "工作概览", icon: LayoutDashboard },
@@ -132,6 +134,33 @@ const nav = [
   { id: "team", label: "团队成员", icon: Users },
   { id: "trash", label: "回收站", icon: Trash2 },
 ]
+const pages = [
+  ...nav,
+  { id: "help", label: "帮助与快捷操作", icon: CircleHelp },
+]
+
+function HelpMenuButton({
+  active,
+  onNavigate,
+}: {
+  active: boolean
+  onNavigate: () => void
+}) {
+  const { setOpenMobile } = useSidebar()
+  return (
+    <SidebarMenuButton
+      isActive={active}
+      onClick={() => {
+        onNavigate()
+        setOpenMobile(false)
+      }}
+    >
+      <CircleHelp />
+      <span>帮助与快捷操作</span>
+    </SidebarMenuButton>
+  )
+}
+
 export default function Workspace() {
   const { user, logout } = useAuth()
   const ui = useUI(),
@@ -191,35 +220,30 @@ export default function Workspace() {
     }
     setTaskForm({ status })
   }
-  const removeTask = async (task: Task) => {
-    try {
-      // Each promise settles even when another write replaces the mutation observer.
-      const deleted = await actions.taskUpdate.mutateAsync({
-        task,
-        patch: { deleted_at: new Date().toISOString() },
-      })
-      if (useUI.getState().selected === task.id) set({ selected: null })
-      toast.success("任务已移入回收站", {
-        description: task.title,
-        duration: 8000,
-        action: {
-          label: "撤销",
-          onClick: async () => {
-            try {
-              await actions.taskUpdate.mutateAsync({
-                task: deleted,
-                patch: { deleted_at: "" },
-              })
-              toast.success("任务已恢复")
-            } catch {
-              // useActions reports server errors.
-            }
-          },
+  const removeTask = (task: Task) => {
+    actions.taskUpdate.mutate(
+      { task, patch: { deleted_at: new Date().toISOString() } },
+      {
+        onSuccess: (deleted) => {
+          if (useUI.getState().selected === task.id) set({ selected: null })
+          toast.success("任务已移入回收站", {
+            description: task.title,
+            duration: 8000,
+            action: {
+              label: "撤销",
+              onClick: () => {
+                actions.taskUpdate.mutate(
+                  { task: deleted, patch: { deleted_at: "" } },
+                  {
+                    onSuccess: () => toast.success("任务已恢复"),
+                  }
+                )
+              },
+            },
+          })
         },
-      })
-    } catch {
-      // useActions reports server errors.
-    }
+      }
+    )
   }
   const filtered = tasks.filter((task) => {
     if (page === "trash" ? !task.deleted_at : !!task.deleted_at) return false
@@ -405,16 +429,10 @@ export default function Workspace() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton
-                  onClick={() =>
-                    toast.info(
-                      "⌘K / Ctrl+K 搜索；列表可直接修改状态、优先级、负责人和日期；点击圆圈完成任务；日期按 Enter 或离开后保存、Esc 取消；拖动手柄排序，看板支持跨列移动。"
-                    )
-                  }
-                >
-                  <CircleHelp />
-                  <span>帮助与快捷操作</span>
-                </SidebarMenuButton>
+                <HelpMenuButton
+                  active={page === "help"}
+                  onNavigate={() => navigate("help")}
+                />
               </SidebarMenuItem>
             </SidebarMenu>
             <div className="sidebar-profile">
@@ -452,10 +470,10 @@ export default function Workspace() {
             <div>
               <SidebarTrigger />
               <span className="topbar-divider" />
-              <span>工作空间</span>
-              <ChevronRight size={13} />
+              <span className="topbar-workspace">工作空间</span>
+              <ChevronRight className="topbar-chevron" size={13} />
               <strong>
-                {nav.find((n) => n.id === page)?.label || "工作概览"}
+                {pages.find((n) => n.id === page)?.label || "工作概览"}
               </strong>
             </div>
             <div>
@@ -491,15 +509,17 @@ export default function Workspace() {
                 <h1>
                   {page === "overview"
                     ? "每一份进展，都值得看见。"
-                    : nav.find((n) => n.id === page)?.label}
+                    : pages.find((n) => n.id === page)?.label}
                   <Sparkles className="heading-dot" size={23} strokeWidth={1} />
                 </h1>
                 <p>
                   {page === "overview"
                     ? `你好，${currentUser.name}。这里是团队当前的工作动态。`
-                    : page === "trash"
-                      ? "让删除有余地，重要的任务随时可以找回。"
-                      : "让协作更有条理，让创意持续发生。"}
+                    : page === "help"
+                      ? "从第一个项目开始，找到适合自己的协作节奏。"
+                      : page === "trash"
+                        ? "让删除有余地，重要的任务随时可以找回。"
+                        : "让协作更有条理，让创意持续发生。"}
                   <span className="heading-date">
                     {new Date().toLocaleDateString("zh-CN", {
                       month: "long",
@@ -510,7 +530,12 @@ export default function Workspace() {
                 </p>
               </div>
               <div className="heading-actions">
-                {page === "projects" ? (
+                {page === "help" ? (
+                  <Button variant="outline" onClick={() => setSearchOpen(true)}>
+                    <Search size={14} />
+                    搜索工作空间
+                  </Button>
+                ) : page === "projects" ? (
                   <Button onClick={() => setProjectForm({})}>
                     <Plus size={15} />
                     新建项目
@@ -554,7 +579,22 @@ export default function Workspace() {
                 </Button>
               </div>
             )}
-            {workspace.loading ? (
+            {page === "help" ? (
+              <Help
+                isAdmin={currentUser.role === "admin"}
+                hasProjects={activeProjects.length > 0}
+                loading={workspace.loading || !!workspace.error}
+                onCreateProject={() => setProjectForm({})}
+                onCreateTask={() => newTask()}
+                onNavigate={navigate}
+                onShowTasks={(view) => {
+                  navigate("overview")
+                  set({ view })
+                }}
+                onSearch={() => setSearchOpen(true)}
+                onSettings={() => setSettingsOpen(true)}
+              />
+            ) : workspace.loading ? (
               <div className="startup inline-startup">
                 <LoaderCircle className="animate-spin" size={20} />
                 <p>正在加载工作空间…</p>
@@ -1047,11 +1087,15 @@ export default function Workspace() {
         <CommandList>
           <CommandEmpty>没有找到相关结果。</CommandEmpty>
           <CommandGroup heading="页面">
-            {nav.map((item) => (
+            {pages.map((item) => (
               <CommandItem
                 key={item.id}
                 value={`page:${item.id}`}
-                keywords={[item.label]}
+                keywords={
+                  item.id === "help"
+                    ? [item.label, "新手", "入门", "快捷键", "使用指南"]
+                    : [item.label]
+                }
                 onSelect={() => {
                   navigate(item.id)
                   setSearchOpen(false)
