@@ -1029,14 +1029,24 @@ export default function Workspace() {
           {detail}
         </SheetContent>
       </Sheet>
-      <CommandDialog open={searchOpen} onOpenChange={setSearchOpen}>
-        <CommandInput placeholder="搜索任务或跳转页面…" />
+      <CommandDialog
+        open={searchOpen}
+        onOpenChange={setSearchOpen}
+        title="搜索工作空间"
+        description="搜索任务或跳转页面，使用方向键选择，按 Enter 打开。"
+      >
+        <CommandInput
+          aria-label="搜索工作空间"
+          placeholder="搜索任务或跳转页面…"
+        />
         <CommandList>
           <CommandEmpty>没有找到相关结果。</CommandEmpty>
           <CommandGroup heading="页面">
             {nav.map((item) => (
               <CommandItem
                 key={item.id}
+                value={`page:${item.id}`}
+                keywords={[item.label]}
                 onSelect={() => {
                   navigate(item.id)
                   setSearchOpen(false)
@@ -1051,6 +1061,13 @@ export default function Workspace() {
             {liveTasks.map((task) => (
               <CommandItem
                 key={task.id}
+                value={`task:${task.id}`}
+                keywords={[
+                  task.title,
+                  task.id,
+                  task.label,
+                  projects.find((p) => p.id === task.project)?.name || "",
+                ]}
                 onSelect={() => {
                   set({
                     page: "overview",
