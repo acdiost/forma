@@ -275,6 +275,7 @@ export default function Workspace() {
         "项目",
         "状态",
         "优先级",
+        "进度（%）",
         "负责人",
         "截止日期",
         "标签",
@@ -285,6 +286,7 @@ export default function Workspace() {
         projects.find((p) => p.id === t.project)?.name || "",
         statuses.find((s) => s.value === t.status)?.label || "",
         priorities.find((p) => p.value === t.priority)?.label || "",
+        String(t.progress ?? (t.status === "done" ? 100 : 0)),
         members.find((m) => m.id === t.assignee)?.name || "",
         dateInput(t.due),
         t.label,
@@ -990,7 +992,7 @@ export default function Workspace() {
                               {page === "trash"
                                 ? "数据保留在服务器，可随时恢复"
                                 : view === "board"
-                                  ? "直接修改优先级 · 拖动手柄跨列更改状态"
+                                  ? "直接修改优先级与进度 · 拖动手柄跨列更改状态"
                                   : "点击字段直接修改 · 圆圈完成 · 手柄排序"}
                             </span>
                             <span>共 {filtered.length} 项</span>

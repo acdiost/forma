@@ -300,6 +300,7 @@ test(
         task = result.data
         assert.equal(task.version, 1)
         assert.equal(task.created_by, admin.record.id)
+        assert.equal(task.progress, 0)
         const forbiddenRead = await api(
           `/api/collections/tasks/records/${task.id}`
         )
@@ -357,7 +358,105 @@ test(
         assert.equal(done.status, 200)
         task = done.data
         assert.ok(task.completed_at)
+        assert.equal(task.progress, 100)
         assert.equal(task.version, 3)
+      }
+    )
+    await t.test(
+      "percentage progress validates and stays consistent with completion",
+      async () => {
+        const create = (body) =>
+          api("/api/collections/tasks/records", {
+            method: "POST",
+            token: admin.token,
+            body: {
+              title: "进度验收",
+              project: project.id,
+              status: "todo",
+              priority: "medium",
+              ...body,
+            },
+          })
+        for (const progress of [-1, 101, 12.5]) {
+          assert.equal(
+            (await create({ progress, status: "done" })).status,
+            400,
+            `Invalid progress accepted: ${JSON.stringify(progress)}`
+          )
+        }
+        let result = await create({ progress: 25 })
+        assert.equal(result.status, 200)
+        let record = result.data
+        assert.equal(record.progress, 25)
+        assert.equal(record.status, "progress")
+        const path = `/api/collections/tasks/records/${record.id}`
+        const update = async (patch) => {
+          const response = await api(path, {
+            method: "PATCH",
+            token: member.token,
+            version: record.version,
+            body: patch,
+          })
+          assert.equal(response.status, 200, JSON.stringify(response.data))
+          record = response.data
+        }
+        for (const progress of [0, 1, 50, 99, 100]) {
+          await update({ progress })
+          assert.equal(record.progress, progress)
+          assert.equal(record.status, progress === 100 ? "done" : "progress")
+          assert.equal(!!record.completed_at, progress === 100)
+        }
+        const completedAt = record.completed_at
+        await update({ priority: "high" })
+        assert.equal(record.completed_at, completedAt)
+        for (const progress of [-1, 101, 12.5]) {
+          const invalid = await api(path, {
+            method: "PATCH",
+            token: member.token,
+            version: record.version,
+            body: { progress },
+          })
+          assert.equal(invalid.status, 400)
+        }
+        assert.equal(
+          (await api(path, { token: admin.token })).data.version,
+          record.version
+        )
+        await update({ progress: 60 })
+        assert.equal(record.status, "progress")
+        assert.equal(record.completed_at, "")
+        const staleVersion = record.version
+        await update({ status: "done" })
+        assert.equal(record.progress, 100)
+        assert.equal(
+          (
+            await api(path, {
+              method: "PATCH",
+              token: admin.token,
+              version: staleVersion,
+              body: { progress: 10 },
+            })
+          ).status,
+          409
+        )
+        await update({ status: "review" })
+        assert.equal(record.progress, 0)
+        assert.equal(record.status, "review")
+        assert.equal(record.completed_at, "")
+        await update({ progress: 60 })
+        assert.equal(record.status, "review")
+        await update({ status: "todo" })
+        assert.equal(record.progress, 0)
+        await update({ progress: 60 })
+        assert.equal(record.status, "progress")
+        await update({ deleted_at: new Date().toISOString() })
+        await update({ deleted_at: "" })
+        assert.equal(record.progress, 60)
+        assert.equal(record.status, "progress")
+        result = await create({ status: "done", progress: 10 })
+        assert.equal(result.status, 200)
+        assert.equal(result.data.progress, 100)
+        assert.ok(result.data.completed_at)
       }
     )
     await t.test(
@@ -494,6 +593,7 @@ test(
           token: admin.token,
         })
         assert.equal(result.data.version, task.version)
+        assert.equal(result.data.progress, task.progress)
         result = await api(`/api/collections/tasks/records/${task.id}`, {
           method: "PATCH",
           token: admin.token,
@@ -513,6 +613,7 @@ test(
         })
         assert.equal(result.data.title, task.title)
         assert.equal(result.data.version, task.version)
+        assert.equal(result.data.progress, task.progress)
       }
     )
   }

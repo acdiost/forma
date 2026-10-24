@@ -21,7 +21,23 @@ function validateTask(app, record, original) {
     if (!app.findRecordById("members", assignee).getBool("active"))
       throw new BadRequestError("负责人账号已停用。")
   }
-  const wasDone = original && original.getString("status") === "done"
+  let progress = record.getFloat("progress")
+  if (!Number.isInteger(progress) || progress < 0 || progress > 100) {
+    throw new BadRequestError("进度必须是 0–100 的整数。")
+  }
+  const previousStatus = original && original.getString("status")
+  let status = record.getString("status")
+  const changedStatus = original && status !== previousStatus
+  if (status === "done" && (!original || changedStatus)) progress = 100
+  else if (changedStatus && status === "todo") progress = 0
+  else if (changedStatus && previousStatus === "done" && progress === 100)
+    progress = 0
+  else if (progress === 100) status = "done"
+  else if (status === "done" || (status === "todo" && progress > 0))
+    status = "progress"
+  record.set("progress", progress)
+  record.set("status", status)
+  const wasDone = original && previousStatus === "done"
   record.set(
     "completed_at",
     record.getString("status") === "done"

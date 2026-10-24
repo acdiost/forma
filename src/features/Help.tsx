@@ -51,7 +51,7 @@ const questions = [
   {
     question: "任务该在哪里编辑，什么时候会保存？",
     answer:
-      "点击任务标题查看详情，点击“编辑”修改完整信息。列表中的状态、优先级和负责人选择后立即保存；截止日期在按 Enter 或离开输入框时保存，Esc 取消。创建或编辑表单需要点击提交按钮。",
+      "点击任务标题查看详情，点击“编辑”修改完整信息。列表中的状态、优先级和负责人选择后立即保存；截止日期和百分比进度在按 Enter 或离开输入框时保存，Esc 取消。100% 自动完成，改回待开始则重置为 0%。创建或编辑表单需要点击提交按钮。",
   },
   {
     question: "误删任务或归档项目后怎么恢复？",
@@ -104,7 +104,7 @@ export function Help({
       icon: CheckCheck,
       title: "把下一步写成任务",
       description:
-        "选择项目，写下具体要做的事，再分配负责人、优先级和截止日期。",
+        "选择项目，写下具体要做的事，再分配负责人、优先级、当前进度和截止日期。",
       action: hasProjects ? "创建任务" : "先创建项目",
       onClick: hasProjects ? onCreateTask : onCreateProject,
     },
@@ -123,7 +123,7 @@ export function Help({
       icon: List,
       title: "在列表中快速处理",
       description:
-        "点字段修改状态、优先级和负责人；点标题旁的圆圈完成任务，再点可重新打开。拖动手柄可调整顺序。",
+        "点字段修改状态、优先级和负责人；点标题旁的圆圈完成任务，再点可重新打开。百分比进度可直接输入并保存；拖动手柄可调整顺序。",
       action: "打开任务列表",
       onClick: () => onShowTasks("list"),
     },
@@ -131,7 +131,7 @@ export function Help({
       icon: LayoutGrid,
       title: "用看板推进状态",
       description:
-        "按待开始、进行中、审核中、已完成查看任务。用卡片手柄拖到另一列修改状态，也可直接修改优先级。",
+        "按待开始、进行中、审核中、已完成查看任务。用卡片手柄拖到另一列修改状态，也可直接修改优先级和百分比进度。",
       action: "打开任务看板",
       onClick: () => onShowTasks("board"),
     },

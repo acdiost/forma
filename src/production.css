@@ -1086,3 +1086,59 @@ body {
     display: none;
   }
 }
+
+.task-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 7rem;
+}
+.task-progress [data-slot="progress"] {
+  flex: 1;
+  min-width: 30px;
+}
+.task-progress-number {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--muted-foreground);
+  font-size: 0.6875rem;
+}
+.task-progress-number input[data-slot="input"] {
+  width: 3.75rem;
+  height: auto;
+  min-height: 30px;
+  padding: 3px 4px;
+  text-align: right;
+  font-size: 0.75rem;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.task-progress-number input:hover,
+.task-progress-number input:focus {
+  border-color: var(--border);
+}
+.task-progress-value {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+.board-card .task-progress {
+  margin: 10px 0;
+}
+.task-detail-content > .task-progress {
+  margin: 6px 0 16px;
+}
+.form-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.form-progress input[data-slot="input"] {
+  width: 96px;
+  flex-shrink: 0;
+}
+.form-progress [data-slot="progress"] {
+  flex: 1;
+}

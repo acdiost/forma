@@ -49,6 +49,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { TaskProgress } from "./TaskProgress"
 import { TaskChoice, TaskDue, TaskPriority } from "./TaskQuickFields"
 import { useActions } from "@/hooks/use-workspace"
 import { useUI } from "@/store"
@@ -166,6 +167,7 @@ export function TaskViews(props: Props) {
                 <TableHead className="grip-cell" />
                 <TableHead>任务名称</TableHead>
                 <TableHead>状态</TableHead>
+                <TableHead>进度</TableHead>
                 <TableHead>优先级</TableHead>
                 <TableHead>负责人</TableHead>
                 <TableHead>截止日期</TableHead>
@@ -333,6 +335,16 @@ function TaskRow({
             <StatusBadge status={task.status} />
           </TaskChoice>
         )}
+      </TableCell>
+      <TableCell>
+        <TaskProgress
+          task={task}
+          disabled={saving}
+          readOnly={props.trash}
+          onSave={(progress) =>
+            actions.taskUpdate.mutateAsync({ task, patch: { progress } })
+          }
+        />
       </TableCell>
       <TableCell>
         <TaskPriority
@@ -561,6 +573,13 @@ function BoardCard({
         <p className={isOverdue(task) ? "overdue" : ""}>
           {displayDate(task.due)}
         </p>
+        <TaskProgress
+          task={task}
+          disabled={pending || actions.taskUpdate.isPending}
+          onSave={(progress) =>
+            actions.taskUpdate.mutateAsync({ task, patch: { progress } })
+          }
+        />
         <div className="board-bottom">
           {task.label ? (
             <Badge variant="secondary">{task.label}</Badge>

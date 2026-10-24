@@ -21,6 +21,7 @@ export type Task = RecordModel & {
   project: string
   status: Status
   priority: Priority
+  progress: number
   assignee: string
   due: string
   completed_at: string
@@ -37,6 +38,7 @@ export type TaskInput = Pick<
   | "project"
   | "status"
   | "priority"
+  | "progress"
   | "assignee"
   | "due"
   | "label"

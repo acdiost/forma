@@ -24,6 +24,7 @@ import {
   type Status,
   type Task,
 } from "@/lib/types"
+import { TaskProgress } from "./TaskProgress"
 import { FormSelect } from "./Forms"
 export function TaskDetail({
   task,
@@ -56,6 +57,15 @@ export function TaskDetail({
       <p className="detail-description">
         {task.description || "暂无描述。点击编辑补充任务背景与交付要求。"}
       </p>
+      <Label>进度</Label>
+      <TaskProgress
+        task={task}
+        readOnly={!!task.deleted_at}
+        disabled={actions.taskUpdate.isPending}
+        onSave={(progress) =>
+          actions.taskUpdate.mutateAsync({ task, patch: { progress } })
+        }
+      />
       {task.deleted_at ? (
         <div className="demo-info">
           此任务已移入回收站，可从回收站列表恢复。

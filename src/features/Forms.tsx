@@ -31,6 +31,7 @@ import {
   type Status,
   type Task,
 } from "@/lib/types"
+import { Progress } from "@/components/ui/progress"
 import { FieldError } from "./AuthScreen"
 const taskSchema = z.object({
   title: z.string().trim().min(1, "请输入任务名称").max(200),
@@ -38,6 +39,11 @@ const taskSchema = z.object({
   project: z.string().min(1, "请选择项目"),
   status: z.enum(["todo", "progress", "review", "done"]),
   priority: z.enum(["high", "medium", "low"]),
+  progress: z
+    .number({ error: "请输入 0–100 的整数" })
+    .int("请输入整数")
+    .min(0, "不能小于 0")
+    .max(100, "不能超过 100"),
   assignee: z.string(),
   due: z.string(),
   label: z.string().max(30, "标签最多 30 个字符"),
@@ -70,6 +76,9 @@ export function TaskDialog({
         "",
       status: task?.status || initialStatus,
       priority: task?.priority || "medium",
+      progress:
+        task?.progress ??
+        ((task?.status || initialStatus) === "done" ? 100 : 0),
       assignee: task?.assignee || "",
       due: dateInput(task?.due || ""),
       label: task?.label || "",
@@ -130,6 +139,55 @@ export function TaskDialog({
                 {...form.register("description")}
               />
             </div>
+            <div>
+              <Label htmlFor="task-progress">进度（%）</Label>
+              <Controller
+                control={form.control}
+                name="progress"
+                render={({ field }) => (
+                  <div className="form-progress">
+                    <Input
+                      {...field}
+                      id="task-progress"
+                      type="number"
+                      min={0}
+                      max={100}
+                      step={1}
+                      value={Number.isNaN(field.value) ? "" : field.value}
+                      onChange={(event) => {
+                        const value = event.currentTarget.valueAsNumber
+                        field.onChange(value)
+                        if (
+                          !Number.isInteger(value) ||
+                          value < 0 ||
+                          value > 100
+                        )
+                          return
+                        const status = form.getValues("status")
+                        if (value === 100) form.setValue("status", "done")
+                        else if (
+                          status === "done" ||
+                          (status === "todo" && value > 0)
+                        )
+                          form.setValue("status", "progress")
+                      }}
+                    />
+                    <Progress
+                      aria-label="任务进度预览"
+                      value={
+                        Number.isFinite(field.value)
+                          ? Math.max(0, Math.min(100, field.value))
+                          : 0
+                      }
+                    />
+                  </div>
+                )}
+              />
+              <FieldError text={form.formState.errors.progress?.message} />
+              <small>
+                100% 自动完成；标记完成同步为 100%；改回待开始重置为 0%。
+              </small>
+            </div>
             <div className="form-grid">
               <div>
                 <Label>所属项目</Label>
@@ -184,7 +242,18 @@ export function TaskDialog({
                     <FormSelect
                       label="状态"
                       value={field.value}
-                      onChange={field.onChange}
+                      onChange={(value) => {
+                        field.onChange(value)
+                        if (value === "done")
+                          form.setValue("progress", 100, {
+                            shouldValidate: true,
+                          })
+                        else if (
+                          value === "todo" ||
+                          form.getValues("progress") === 100
+                        )
+                          form.setValue("progress", 0, { shouldValidate: true })
+                      }}
                       options={statuses}
                     />
                   )}
