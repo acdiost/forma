@@ -191,30 +191,35 @@ export default function Workspace() {
     }
     setTaskForm({ status })
   }
-  const removeTask = (task: Task) => {
-    actions.taskUpdate.mutate(
-      { task, patch: { deleted_at: new Date().toISOString() } },
-      {
-        onSuccess: (deleted) => {
-          if (useUI.getState().selected === task.id) set({ selected: null })
-          toast.success("任务已移入回收站", {
-            description: task.title,
-            duration: 8000,
-            action: {
-              label: "撤销",
-              onClick: () => {
-                actions.taskUpdate.mutate(
-                  { task: deleted, patch: { deleted_at: "" } },
-                  {
-                    onSuccess: () => toast.success("任务已恢复"),
-                  }
-                )
-              },
-            },
-          })
+  const removeTask = async (task: Task) => {
+    try {
+      // Each promise settles even when another write replaces the mutation observer.
+      const deleted = await actions.taskUpdate.mutateAsync({
+        task,
+        patch: { deleted_at: new Date().toISOString() },
+      })
+      if (useUI.getState().selected === task.id) set({ selected: null })
+      toast.success("任务已移入回收站", {
+        description: task.title,
+        duration: 8000,
+        action: {
+          label: "撤销",
+          onClick: async () => {
+            try {
+              await actions.taskUpdate.mutateAsync({
+                task: deleted,
+                patch: { deleted_at: "" },
+              })
+              toast.success("任务已恢复")
+            } catch {
+              // useActions reports server errors.
+            }
+          },
         },
-      }
-    )
+      })
+    } catch {
+      // useActions reports server errors.
+    }
   }
   const filtered = tasks.filter((task) => {
     if (page === "trash" ? !task.deleted_at : !!task.deleted_at) return false
