@@ -125,6 +125,7 @@ import {
 } from "@/features/Forms"
 import { TaskViews } from "@/features/TaskViews"
 import { TaskDetail } from "@/features/TaskDetail"
+import { ThemePicker } from "@/features/ThemePicker"
 import { Help } from "@/features/Help"
 
 const nav = [
@@ -650,7 +651,7 @@ export default function Workspace() {
                                 <div
                                   className="project-card-icon"
                                   style={{
-                                    background: colors[project.color] + "20",
+                                    background: `var(--project-${project.color}-background)`,
                                     color: colors[project.color],
                                   }}
                                 >
@@ -1150,6 +1151,7 @@ export default function Workspace() {
               调整显示方式，找到适合自己的工作节奏。
             </DialogDescription>
           </DialogHeader>
+          <ThemePicker />
           <div className="setting-row">
             <div>
               <Label htmlFor="dark-mode">深色模式</Label>

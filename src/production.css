@@ -157,7 +157,7 @@ body {
 }
 .due-cell.overdue,
 .overdue {
-  color: #bf7155 !important;
+  color: var(--red-11) !important;
 }
 .table-footer {
   font-size: 0.625rem;
@@ -438,14 +438,14 @@ body {
   padding: 40px 20px;
   background: radial-gradient(
     ellipse at 50% 20%,
-    #f3f1e9 0%,
+    var(--brand-3) 0%,
     var(--background) 65%
   );
 }
 .dark .auth-page {
   background: radial-gradient(
     ellipse at 50% 20%,
-    #2c3025 0%,
+    var(--brand-3) 0%,
     var(--background) 65%
   );
 }
@@ -468,7 +468,7 @@ body {
   width: 100%;
   max-width: 420px;
   padding: 0;
-  box-shadow: 0 10px 40px #00000005;
+  box-shadow: 0 10px 40px var(--black-a3);
 }
 .auth-card [data-slot="card-content"] {
   padding: 30px;
@@ -548,12 +548,12 @@ body {
   overflow-y: auto;
 }
 .dark .online {
-  background: #33442a !important;
-  color: #b4c7a2;
+  background: var(--jade-3) !important;
+  color: var(--jade-11);
 }
 .dark .board-bottom [data-slot="badge"] {
-  background: #30382a;
-  color: #b8c4aa;
+  background: var(--muted);
+  color: var(--muted-foreground);
 }
 @media (max-width: 1100px) {
   .topbar [data-slot="sidebar-trigger"] {

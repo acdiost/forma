@@ -70,6 +70,14 @@ TanStack Query 与 Zustand 分工明确：任务、项目、成员等业务记�
 - 此方案以单实例为目标；不承诺任意并发容量或直接水平扩展。
 - PocketBase 官方说明：在达到 1.0 前不保证完全向后兼容，暂不推荐用于关键生产应用。若未来需要严格高可用、复杂事务或关键业务承载，需要重新评估后端方案。这里优先选择内部工具的低部署与维护成本。
 
+## 配色约定
+
+- 使用官方 `@radix-ui/colors` 包，随应用打包，不依赖运行时 CDN。
+- 暖砂：Orange + Sand；靛蓝：Indigo + Slate；青玉：Jade + Sage。色板选择和深浅色模式分别保存到 Zustand UI 偏好。
+- `src/themes.css` 将官方色阶映射为 shadcn 语义变量：1–2 背景，3–5 交互背景，6–8 边框与焦点，9–10 实色与悬停，11–12 文字。
+- 组件、图表和项目颜色使用语义 CSS 变量；错误、警告、信息、成功分别使用 Red、Amber、Blue、Jade，避免业务含义随主题改变。提示消息也沿用相同规则。
+- [Radix 色阶用途](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale)与[配色搭配](https://www.radix-ui.com/colors/docs/palette-composition/composing-a-palette)。
+
 ## 官方依据
 
 - [PocketBase 概览与版本兼容性说明](https://pocketbase.io/docs/)

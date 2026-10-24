@@ -6,7 +6,13 @@ export const fontSizes = [
   { value: "125", label: "大 · 125%" },
   { value: "150", label: "特大 · 150%" },
 ]
+export const themes = [
+  { value: "sand", label: "暖砂" },
+  { value: "indigo", label: "靛蓝" },
+  { value: "jade", label: "青玉" },
+]
 type UI = {
+  theme: string
   fontSize: string
   dark: boolean
   page: string
@@ -22,6 +28,7 @@ export const useUI = create<UI>()(
   persist(
     (set) => ({
       dark: false,
+      theme: "sand",
       fontSize: "100",
       page: "overview",
       view: "list",
@@ -36,6 +43,7 @@ export const useUI = create<UI>()(
       name: "forma-ui-v001",
       partialize: (s) => ({
         dark: s.dark,
+        theme: s.theme,
         fontSize: s.fontSize,
         showDetails: s.showDetails,
         view: s.view,

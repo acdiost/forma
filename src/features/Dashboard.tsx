@@ -154,10 +154,14 @@ export function Dashboard({
                     <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
                       <stop
                         offset="0%"
-                        stopColor="#cf8958"
+                        stopColor="var(--primary)"
                         stopOpacity={0.25}
                       />
-                      <stop offset="100%" stopColor="#cf8958" stopOpacity={0} />
+                      <stop
+                        offset="100%"
+                        stopColor="var(--primary)"
+                        stopOpacity={0}
+                      />
                     </linearGradient>
                   </defs>
                   <CartesianGrid
@@ -189,7 +193,7 @@ export function Dashboard({
                     type="monotone"
                     name="已完成"
                     dataKey="done"
-                    stroke="#cf8958"
+                    stroke="var(--primary)"
                     fill="url(#fill)"
                     strokeWidth={2.5}
                   />

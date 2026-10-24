@@ -68,10 +68,10 @@ export const priorities: { value: Priority; label: string }[] = [
   { value: "low", label: "低" },
 ]
 export const colors = {
-  orange: "#ce895a",
-  green: "#829b70",
-  blue: "#789eae",
-  purple: "#9d8cbb",
+  orange: "var(--orange-11)",
+  green: "var(--jade-11)",
+  blue: "var(--blue-11)",
+  purple: "var(--violet-11)",
 }
 export function dateInput(value: string) {
   return value ? value.slice(0, 10) : ""
